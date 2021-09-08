@@ -3,22 +3,17 @@
     <v-app-bar app color="primary" dark>Deployments</v-app-bar>
 
     <v-main>
-      <HelloWorld :msg="msg" />
+      {{ msg }}
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
 import axios from "axios";
 
 export default {
   name: "App",
-
-  components: {
-    HelloWorld,
-  },
-
   data: () => ({
     msg: null,
   }),
@@ -27,6 +22,9 @@ export default {
       .get("http://localhost:5000/hello")
       .then((response) => {
         return response.data;
+      })
+      .catch((error) => {
+        return error;
       });
   },
 };
